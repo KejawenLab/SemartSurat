@@ -31,3 +31,6 @@ services:
         KejawenLab\Semart\Surat\Contract\Service\ServiceInterface:
             tags:
                 - { name: 'semart.service' }
+        KejawenLab\Semart\Surat\Contract\Letter\NumberFormatInterface:
+            tags:
+                - { name: 'semart.number_format' }

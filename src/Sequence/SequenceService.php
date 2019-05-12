@@ -33,15 +33,14 @@ class SequenceService implements ServiceInterface
     }
 
     /**
-     * @param string $namespace
      * @param string $code
      *
      * @return string
      */
-    public function getLastNumber(string $namespace, string $code): string
+    public function getLastNumber(string $code): string
     {
         /** @var Sequence $sequence */
-        $sequence = $this->sequenceRepository->findOneBy(['namespace' => $namespace, 'code' => $code]);
+        $sequence = $this->sequenceRepository->findOneBy(['code' => $code]);
         if (!$sequence) {
 
             return '0';
@@ -50,7 +49,7 @@ class SequenceService implements ServiceInterface
 
         if ($sequence->isRomanNumber()) {
 
-            return $this->convertToRoman($sequence->getLastValue());
+            return RomanNumberConverter::convert($sequence->getLastValue());
         }
 
         $prefix = '';
@@ -59,21 +58,5 @@ class SequenceService implements ServiceInterface
         }
 
         return Str::make(sprintf('%s%s', $prefix, $sequence->getLastValue()))->substring(-1 * $sequence->getPrefixLength(), $sequence->getPrefixLength())->__toString();
-    }
-
-    private function convertToRoman(int $number): string
-    {
-        $romanMap = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M'];
-        $decimalMap = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
-
-        $output = '';
-        for ($i=12; $i>=0; $i--) {
-            while($number >= $decimalMap[$i]) {
-                $number -= $decimalMap[$i];
-                $output .= $romanMap[$i];
-            }
-        }
-
-        return $output;
     }
 }

@@ -73,3 +73,9 @@ label:
         prefix_length: 'Panjang Awalan'
         roman_number: 'Angka Romawi'
         last_value: 'Nilai Terakhir'
+    letter:
+        code: 'Kode Surat'
+        name: 'Nama Surat'
+        number_format: 'Format Nomer'
+        template: 'Template'
+        last_number: 'Nomer Terakhir'

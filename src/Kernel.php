@@ -4,6 +4,8 @@ namespace KejawenLab\Semart\Surat;
 
 use KejawenLab\Semart\Collection\Collection;
 use KejawenLab\Semart\Surat\Generator\GeneratorFactory;
+use KejawenLab\Semart\Surat\Letter\LetterService;
+use KejawenLab\Semart\Surat\Letter\NumberFormat\NumberFormatFactory;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -71,6 +73,16 @@ class Kernel extends BaseKernel implements CompilerPassInterface
         ;
         $definition = $container->getDefinition(GeneratorFactory::class);
         $definition->addArgument($generators);
+
+        $numberFormatters = Collection::collect($container->findTaggedServiceIds(sprintf('%s.number_format', Application::APP_UNIQUE_NAME)))
+            ->keys()
+            ->map(function ($serviceId) {
+                return new Reference($serviceId);
+            })
+            ->toArray()
+        ;
+        $definition = $container->getDefinition(NumberFormatFactory::class);
+        $definition->addArgument($numberFormatters);
 
         $services = Collection::collect($container->findTaggedServiceIds(sprintf('%s.service', Application::APP_UNIQUE_NAME)))
             ->keys()

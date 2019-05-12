@@ -26,7 +26,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @Searchable({"namespace", "code"})
  * @Sortable({"namespace", "code"})
  *
- * @UniqueEntity({"namespace", "code"})
+ * @UniqueEntity({"namespace"})
+ * @UniqueEntity({"code"})
  *
  * @author Muhamad Surya Iksanudin <surya.iksanudin@gmail.com>
  */
