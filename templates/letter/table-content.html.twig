@@ -9,6 +9,9 @@
         <td class="text-right">{{ (key + startNumber)  }}</td>
         <td>{{ data.code }}</td>
         <td>{{ data.name }}</td>
+        <td>{{ data.numberFormat }}</td>
+        <td class="text-center"><a class="btn btn-github" href="{{ path('get_files', { path: data.templatePath }) }}"> <i class="fa fa-file-word-o"></i> Download Template</a></td>
+        <td>{{ data.lastNumber ?: '<b>-</b>' }}</td>
         <td class="text-center">
             {% if is_granted('edit', menu) and false == data.deleted %}
                 <button data-toggle="modal" data-target="#form-modal" data-primary="{{ data.id }}" data-tooltip="tooltip" title="Perbaharui Data" class="btn btn-xs btn-warning edit margin-r-5"><i class="fa fa-edit"></i> {{ 'label.crud.edit' | trans }}</button>

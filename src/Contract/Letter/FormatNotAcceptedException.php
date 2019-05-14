@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KejawenLab\Semart\Surat\Letter\NumberFormat;
+namespace KejawenLab\Semart\Surat\Contract\Letter;
 
 /**
  * @author Muhamad Surya Iksanudin <surya.iksanudin@gmail.com>

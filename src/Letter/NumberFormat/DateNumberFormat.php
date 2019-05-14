@@ -12,12 +12,11 @@ use PHLAK\Twine\Str;
 /**
  * @author Muhamad Surya Iksanudin <surya.iksanudin@gmail.com>
  */
-class YearNumberFormat implements NumberFormatInterface
+class DateNumberFormat implements NumberFormatInterface
 {
-    private const FORMAT = 'YEAR';
-    private const FORMAT_LONG = 'YEAR_LONG';
-    private const FORMAT_ROMAN = 'YEAR_ROMAN';
-    private const FORMAT_ROMAN_LONG = 'YEAR_ROMAN_LONG';
+    private const FORMAT = 'DATE';
+    private const FORMAT_LONG = 'DATE_LONG';
+    private const FORMAT_ROMAN = 'DATE_ROMAN';
 
     /**
      * @param string $format
@@ -28,24 +27,25 @@ class YearNumberFormat implements NumberFormatInterface
     {
         $format = Str::make($format);
         if ($format->equals(static::FORMAT)) {
-            return (string) date('y');
+            return (string) date('j');
         }
 
         if ($format->equals(static::FORMAT_LONG)) {
-            return (string) date('Y');
+            return (string) date('d');
         }
 
         if ($format->equals(static::FORMAT_ROMAN)) {
-            return RomanNumberConverter::convert((int) date('y'));
-        }
-
-        if ($format->equals(static::FORMAT_ROMAN_LONG)) {
-            return RomanNumberConverter::convert((int) date('Y'));
+            return RomanNumberConverter::convert((int) date('j'));
         }
 
         throw new FormatNotAcceptedException();
     }
 
+    /**
+     * @param string $format
+     *
+     * @return bool
+     */
     public function support(string $format): bool
     {
         $format = Str::make($format);

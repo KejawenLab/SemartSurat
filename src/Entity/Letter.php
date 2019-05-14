@@ -59,7 +59,7 @@ class Letter
     private $templatePath;
 
     /**
-     * @ORM\Column(name="nomer_surat_terakhir", type="string", length=255)
+     * @ORM\Column(name="nomer_surat_terakhir", type="string", length=255, nullable=true)
      *
      * @Groups({"read"})
      */

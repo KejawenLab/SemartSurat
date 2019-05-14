@@ -16,5 +16,10 @@ interface NumberFormatInterface
      */
     public function getNumber(string $format): string;
 
+    /**
+     * @param string $format
+     *
+     * @return bool
+     */
     public function support(string $format): bool;
 }

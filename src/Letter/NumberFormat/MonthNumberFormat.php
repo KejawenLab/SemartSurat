@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KejawenLab\Semart\Surat\Letter\NumberFormat;
 
+use KejawenLab\Semart\Surat\Contract\Letter\FormatNotAcceptedException;
 use KejawenLab\Semart\Surat\Contract\Letter\NumberFormatInterface;
 use KejawenLab\Semart\Surat\Sequence\RomanNumberConverter;
 use PHLAK\Twine\Str;
